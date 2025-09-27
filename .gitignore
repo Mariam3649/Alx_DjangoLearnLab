@@ -1,19 +1,14 @@
-# Python / Django
-*.pyc
+# Python
 __pycache__/
-*.sqlite3
-.env
-.env.*
-.venv/
+*.pyc
+
+# Virtual environment
+api_project/venv/
 venv/
-ENV/
-env/
-*.log
+
+# Django DB
+*.sqlite3
 
 # IDEs
 .vscode/
 .idea/
-
-# OS
-.DS_Store
-Thumbs.db

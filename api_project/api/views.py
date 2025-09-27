@@ -1,5 +1,7 @@
-from django.http import JsonResponse
+from rest_framework import generics
+from .models import Book
+from .serializers import BookSerializer
 
-def home(request):
-    return JsonResponse({"message": "Hello, API is working!"})
-
+class BookList(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
