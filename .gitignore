@@ -1,14 +1,5 @@
-# Python
+venv/
 __pycache__/
 *.pyc
-
-# Virtual environment
-api_project/venv/
-venv/
-
-# Django DB
 *.sqlite3
 
-# IDEs
-.vscode/
-.idea/
