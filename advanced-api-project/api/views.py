@@ -1,17 +1,26 @@
-from rest_framework import generics, viewsets
-from .models import Book, Author
-from .serializers import BookSerializer, AuthorSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework import generics, permissions
+from .models import Book
+from .serializers import BookSerializer
 
-# بسيط لعرض قائمة المؤلفين (اختياري)
-class AuthorList(generics.ListAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
-    permission_classes = [AllowAny]
-
-# ViewSet للـ Book يدعم CRUD
-class BookViewSet(viewsets.ModelViewSet):
+# 🔹 List all books OR create a new one
+class BookListCreateView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [AllowAny]
+
+    # السماح للكل بالقراءة لكن الإنشاء محتاج تسجيل دخول
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [permissions.IsAuthenticated()]
+        return [permissions.AllowAny()]
+
+# 🔹 Retrieve, Update, or Delete a single Book
+class BookRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    # السماح للكل بالقراءة لكن التعديل/الحذف محتاج تسجيل دخول
+    def get_permissions(self):
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            return [permissions.IsAuthenticated()]
+        return [permissions.AllowAny()]
 

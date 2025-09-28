@@ -1,11 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import AuthorList, BookViewSet
-
-router = DefaultRouter()
-router.register(r'books', BookViewSet, basename='books')
+from django.urls import path
+from .views import BookListCreateView, BookRetrieveUpdateDeleteView
 
 urlpatterns = [
-    path('authors/', AuthorList.as_view(), name='author-list'),
-    path('', include(router.urls)),  # يضيف /books/ و /books/<id>/
+    path("books/", BookListCreateView.as_view(), name="book-list-create"),
+    path("books/<int:pk>/", BookRetrieveUpdateDeleteView.as_view(), name="book-detail"),
 ]
+
