@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/mariam/Desktop/Alx_DjangoLearnLab/django_blog_project/venv/bin/python3
+=======
+#!/home/mariam/Desktop/Alx_DjangoLearnLab/advanced-api-project/venv/bin/python3
+>>>>>>> origin/main
 # -*- coding: utf-8 -*-
 import re
 import sys
