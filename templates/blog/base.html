@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Django Blog{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1><a href="{% url 'index' %}">Django Blog</a></h1>
+    <nav>
+      {% if user.is_authenticated %}
+        <span>Hi, {{ user.username }} | <a href="{% url 'admin:logout' %}">Logout</a></span>
+      {% else %}
+        <a href="{% url 'admin:login' %}">Login</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>&copy; Django Blog</p>
+  </footer>
+</body>
+</html>
